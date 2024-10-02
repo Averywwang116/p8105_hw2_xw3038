@@ -50,6 +50,7 @@ Cranberry Bagels","Retail manager/Housewife","Poynton, Cheshire",2
 2,1,"Ian","Ian Vallance",40,"stayed in","Apple and Cinnamon Cupcakes",NA,"Fundraiser for English Heritage","Dunstable, Bedfordshire",10
 2,1,"Janet","Janet Basu",63,"stayed in","Raspberry and Cream Cupcakes","Chocolate Marble Cakewith Dark and White Chocolate Truffles","Teacher of Modern Languages","Formby, Liverpool",8
 2,1,"Jason","Jason White",19,"stayed in","Lemon Meringue CupcakesApple and Cinnamon Cupcakes",NA,"Civil Engineering Student","Croydon",6
+2,1,"Jo","Jo Wheatley",41,"stayed in","Chocolate Orange CupcakesOrange and Cardamom Cupcakes","Chocolate and Strawberry Cake","Housewife","Ongar, Essex",11
 2,1,"Keith","Keith Batsford",31,"Eliminated","Earl Grey Cupcakes","Chocolate and Sour Cream Cake","House husband","Arlesey, Bedfordshire",12
 2,1,"Mary-Anne","Mary-Anne Boermans",45,"stayed in","Banoffee Cupcakes","Chocolate and Raspberry Opera cake","Housewife","Kidderminster, Worcestershire",4
 2,1,"Robert","Robert Billington",25,"stayed in","Blackberry and Vanilla Cupcakeswith Liquorice Frosting","Genoise Layered Mousse Cakewith Chocolate Ganache","Photographer","London",3
@@ -61,6 +62,7 @@ Cranberry Bagels","Retail manager/Housewife","Poynton, Cheshire",2
 2,2,"Ian","Ian Vallance",40,"stayed in","Stilton, Spinach and New Potato Quichewith Paprika and Walnut Pastry",NA,"Fundraiser for English Heritage","Dunstable, Bedfordshire",2
 2,2,"Janet","Janet Basu",63,"stayed in","Quiche Printanière","Red Fruit TartsChocolate and Cherry Tarts","Teacher of Modern Languages","Formby, Liverpool",8
 2,2,"Jason","Jason White",19,"Star Baker","Salmon and Pak Choi Quiche","Mint Chocolate Tarts Blueberry Bakewell Tarts","Civil Engineering Student","Croydon",3
+2,2,"Jo","Jo Wheatley",41,"stayed in","Caramelised Onion, Gruyere and Thyme Quiche","Raspberry and Mascarpone Tarts with Lemon and Almond PastryHoney and Almond Tarts with Sweetcrust","Housewife","Ongar, Essex",10
 2,2,"Mary-Anne","Mary-Anne Boermans",45,"stayed in","Roasted Cauliflower, Cheese andCaramelised Onion Quiche","Butterscotch Brulée Tarts in Pecan PastryApple Rose Tarts","Housewife","Kidderminster, Worcestershire",9
 2,2,"Robert","Robert Billington",25,"stayed in","Smoked Bacon and Kale Quiche","Chocolate, Fennel and Ginger TartAlmond, Creme Patissiere and Poached Pear Tart","Photographer","London",5
 2,2,"Simon","Simon Blackwell",31,"Eliminated","Smoked Haddock and Watercress Quiche","Passion Fruit and Ricotta TartsSalted Chocolate, Stem Ginger and Mascarpone Cream Tarts","Rugby Coach","Norfolk",11
@@ -71,6 +73,7 @@ Cranberry Bagels","Retail manager/Housewife","Poynton, Cheshire",2
 2,3,"Ian","Ian Vallance",40,"Eliminated","Courgette, Caerphilly Cheese and Thyme Loaf","Walnut and Raisin RollsCracked Wheat Logs","Fundraiser for English Heritage","Dunstable, Bedfordshire",10
 2,3,"Janet","Janet Basu",63,"stayed in","Zupfe Loaf with Gruyère Cheese","Apple and Walnut Granary Rolls Red Onion Cottage Rolls","Teacher of Modern Languages","Formby, Liverpool",8
 2,3,"Jason","Jason White",19,"stayed in","Cheese and Onion Tear and Share Loaf",NA,"Civil Engineering Student","Croydon",7
+2,3,"Jo","Jo Wheatley",41,"stayed in","Stromboli flavored with Mozzarella, Ham, and Picante Pepper",NA,"Housewife","Ongar, Essex",1
 2,3,"Mary-Anne","Mary-Anne Boermans",45,"stayed in","Ploughman's Loaf","Herb and Walnut BreadsChocolate and Chilli Buns","Housewife","Kidderminster, Worcestershire",5
 2,3,"Robert","Robert Billington",25,"stayed in","Rye and Coriander Seed Loaf","Blueberry Brioche RollsLemon and Poppy Seed Rolls","Photographer","London",4
 2,3,"Urvashi","Urvashi Roe",40,"Eliminated","Salt and Peppercorn Loaf","Chilli and Halloumi RollsLemon and Coriander Mini Loaves","Head of Marketing","Enfield, London",9
@@ -84,23 +87,28 @@ Blackcurrant Macarons
 Almond Macarons","Teacher of Modern Languages","Formby, Liverpool",4
 2,4,"Jason","Jason White",19,"Star Baker","Lebkuchen","Mocktail Macarons
 (Mojito, Cranberry Cooler, and Pina Colada)","Civil Engineering Student","Croydon",1
+2,4,"Jo","Jo Wheatley",41,"stayed in","Lavender Biscuits","Blueberry MacaronsCoconut MacaronsStrawberry Macarons","Housewife","Ongar, Essex",8
 2,4,"Mary-Anne","Mary-Anne Boermans",45,"stayed in","Melting Moments","Blackcurrant and Mint MacaronsGooseberry and Elderflower MacaronsHazelnut Macarons","Housewife","Kidderminster, Worcestershire",2
 2,4,"Robert","Robert Billington",25,"stayed in","Chocolate and Ginger Oat Biscuits","Strawberry and Lime MacaronsLemon MacaronsChocolate and Cardamom Macarons","Photographer","London",7
 2,4,"Yasmin","Yasmin Limbert",43,"stayed in","Chocolate Chip and Pistachio Biscotti","Chocolate and Lime MacaronsCoffee and Walnut MacaronsPineapple and Coconut Macarons","Childminder","West Kirby, The Wirral",6
 2,5,"Holly","Holly Bell",31,"stayed in","Stilton, Potato and Caramelised Onion Pie","Lime Meringue Pie","Advertising executive","Leicester",4
 2,5,"Janet","Janet Basu",63,"Star Baker","Chicken and Chestnut Pie","Rhubarb Meringue Pie","Teacher of Modern Languages","Formby, Liverpool",1
 2,5,"Jason","Jason White",19,"Eliminated","Brown Down Chicken Pie","Plum Meringue Pie","Civil Engineering Student","Croydon",7
+2,5,"Jo","Jo Wheatley",41,"stayed in","Salmon and Asparagus Pie","Apple and Raspberry Meringue Pie","Housewife","Ongar, Essex",6
 2,5,"Mary-Anne","Mary-Anne Boermans",45,"stayed in","Chicken and Bacon Pie","Midnight Meringue","Housewife","Kidderminster, Worcestershire",2
 2,5,"Robert","Robert Billington",25,"Eliminated","Chicken and Mushroom Pie","Rhubarb and Custard Meringue Pie","Photographer","London",3
 2,5,"Yasmin","Yasmin Limbert",43,"stayed in","Family Fish Pie","Peach and Raspberry Meringue Pie","Childminder","West Kirby, The Wirral",5
 2,6,"Holly","Holly Bell",31,"stayed in","Father Christmas' Baked Cheesecake","Hansel and Gretel's Croquembouche","Advertising executive","Leicester",3
 2,6,"Janet","Janet Basu",63,"stayed in","Rhubarb and Ginger Baked Cheesecake","Orange and Nougatine Croquembouche","Teacher of Modern Languages","Formby, Liverpool",5
+2,6,"Jo","Jo Wheatley",41,"Star Baker","Rum and Raisin Baked Cheesecake","Limoncello and White Chocolate Croquembouche","Housewife","Ongar, Essex",1
 2,6,"Mary-Anne","Mary-Anne Boermans",45,"stayed in","Tutti Fruitti Curd Baked Cheesecake","Orange and Praline Croquembouche with Cardamom Caramel","Housewife","Kidderminster, Worcestershire",4
 2,6,"Yasmin","Yasmin Limbert",43,"Eliminated","Baked Amaretto Cheesecake","Rose Croquembouche","Childminder","West Kirby, The Wirral",2
 2,7,"Holly","Holly Bell",31,"stayed in","White Chocolate, Hazelnut and Raspberry Genoise Mousse Cake","Apricot, Macadamia and White Chocolate PinwheelsAlmond CroissantsApple, Raisin and Cinnamon Plaits","Advertising executive","Leicester",1
 2,7,"Janet","Janet Basu",63,"Eliminated","Chocolate Amaretto Mousse Cake","Pain Aux RaisinPlain CroissantPain Au Chocolat","Teacher of Modern Languages","Formby, Liverpool",4
+2,7,"Jo","Jo Wheatley",41,"stayed in","Raspberry & Strawberry Mousse Cake","Pain Aux RaisinChocolate TwistsBanana and Raisin Pastries","Housewife","Ongar, Essex",3
 2,7,"Mary-Anne","Mary-Anne Boermans",45,"stayed in","Chocolate and Orange Mousse Cake","Raspberry Rose DanishesPraline SpiralsAlsatian Plaited Danishes","Housewife","Kidderminster, Worcestershire",2
 2,8,"Holly","Holly Bell",31,"Series Runner up","Banoffee Inspired Mille Feuille","Strawberry and Cream Meringue NestGooseberry and Elderflower 'Bakewell' TartsNeapolitan Ice-Cream Sandwich","Advertising executive","Leicester",2
+2,8,"Jo","Jo Wheatley",41,"Series Winner","Raspberry and Blueberry Mille Feuille","Mini Victoria SandwichesRaspberry, White Chocolate and Pistachio Mini MeringuesMini Banoffee Pie with Banana Mousse","Housewife","Ongar, Essex",1
 2,8,"Mary-Anne","Mary-Anne Boermans",45,"Series Runner up","Lemon and Ginger Mille Feuille","Fruit Tarts with Elderflower CustardStrawberry and Rhubarb CheesecakesBlack Fruit Meringue with Everlasting Syllabub","Housewife","Kidderminster, Worcestershire",3
 3,1,"Brendan","Brendan Lynch",63,"stayed in","Plum, Sour Cherry & Walnut",NA,"Recruitment consultant","Sutton Coldfield",10
 3,1,"Cathryn","Cathryn Dresser",27,"stayed in","Apple, Hazelnut and Calvados","Hidden Cupcake Cake","Shop assistant","Pease Pottage, West Sussex",5
@@ -569,14 +577,6 @@ Chantenay CarrotsChoux Pastry TomatoesCauliflower Cheese Scones","Great British 
 8,10,"Kate","Kate Lyon",29,"Series Runner up","Roman Spelt, Coconut Kala Chana and Flower Breads","White Chocolate, Yuzu and Lychee Entremet","Health and safety inspector","Merseyside",3
 8,10,"Sophie","Sophie Faldo",33,"Series Winner","Spelt Boules, Mushroom Ciabatta and Orange Plaited Brioche","'Ode to the Honey Bee' Entremet","Former army officer and trainee stuntwoman","West Molesey, Surrey",2
 8,10,"Steven","Steven Carter-Bailey",34,"Series Runner up","Spelt & Rye, Toasted Garlic & Fontina and Sweet Chocolate Breads","'Yin Yang' Entremet","Marketer","Watford, Hertfordshire",1
-2,1,"Joanne",NA,NA,"stayed in",NA,NA,NA,NA,11
-2,2,"Joanne",NA,NA,"stayed in",NA,NA,NA,NA,10
-2,3,"Joanne",NA,NA,"stayed in",NA,NA,NA,NA,1
-2,4,"Joanne",NA,NA,"stayed in",NA,NA,NA,NA,8
-2,5,"Joanne",NA,NA,"stayed in",NA,NA,NA,NA,6
-2,6,"Joanne",NA,NA,"Star Baker",NA,NA,NA,NA,1
-2,7,"Joanne",NA,NA,"stayed in",NA,NA,NA,NA,3
-2,8,"Joanne",NA,NA,"Series Winner",NA,NA,NA,NA,1
 5,5,"Diana",NA,NA,"withdrew",NA,NA,NA,NA,NA
 5,6,"Diana",NA,NA,"stayed in",NA,NA,NA,NA,NA
 5,7,"Diana",NA,NA,"stayed in",NA,NA,NA,NA,NA
