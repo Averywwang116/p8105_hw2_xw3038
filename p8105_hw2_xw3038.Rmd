@@ -57,7 +57,7 @@ noentry_without_vending=nrow( filter_station |>
 
 ```
 
-The proportion of station entrances / exits without vending allow entrance is `r noentry_without_vending/without_vending`
+*The proportion of station entrances / exits without vending allow entrance is `r noentry_without_vending/without_vending`
 
 Reformat data so that route number and route name are distinct variables. 
 ```{r}
@@ -79,8 +79,74 @@ A_train_ada= reformat_df|>filter(route_name == "A"& ada=="TRUE")|>distinct(line,
 * There are `r nrow(A_station)` distinct stations served the A train.
 * There are `r nrow(A_train_ada)` distinct A stations that are ADA compliant
 
-
-
 ## Problem 2
+Read and clean the Mr. Trash Wheel Sheet:
+Load the excel using `read_excel` and specify the Mr. Trash Wheel sheet and figure out some potential NA cases. Then the `janitor::clean_names()` is used to standardize the column names. The rows without dumspter specific data are dropped the sports ball column is converted to the integer variable using `as.integer`. In order to differentiate the trash wheel type and help prepare the steps for combining, a column named trash_wheel is also added. And the year is converted to integer as well.
+
+The sheet Professor trash wheel and Gwynndan trash wheel are loaded and cleaned similarly
+```{r }
+#load the Mr. Trash sheet by specifying the excel file
+Mr_trash_wheel_sheet=read_excel("data/Trash_Wheel_Collection_Data.xlsx",
+                                sheet = "Mr. Trash Wheel", 
+                                na = c("NA", ".", "")) |>
+   janitor::clean_names() |> #give reasonable name 
+   select(dumpster:homes_powered)|>
+   drop_na(dumpster)|> #remove the rows without dumpster specific data
+   mutate(sports_balls = as.integer(round(sports_balls)),
+          trash_wheel= "Mr. Trash Wheel", 
+          year = as.integer(year))
+
+Professor_trash_wheel_sheet=read_excel("data/Trash_Wheel_Collection_Data.xlsx",
+                                sheet = "Professor Trash Wheel",
+                                na = c("NA", ".", "")) |>
+   janitor::clean_names() |> #give reasonable name 
+   select(dumpster:homes_powered)|>
+   drop_na(dumpster) |> #remove the rows without dumpster specific data
+   mutate(trash_wheel ="Professor trash wheel",
+           year = as.integer(year))
+
+Gwynnda_trash_wheel=read_excel("data/Trash_Wheel_Collection_Data.xlsx",
+                                sheet = "Gwynnda Trash Wheel",
+                                na = c("NA", ".", "")) |>
+   janitor::clean_names() |> #give reasonable name 
+   select(dumpster:homes_powered)|>
+   drop_na(dumpster) |> #remove the rows without dumpster specific data
+   mutate(trash_wheel ="Gwynnda trash wheel",
+           year = as.integer(year))
+
+
+```
+
+* Mr. trash wheel sheet has `r nrow(Mr_trash_wheel_sheet)` rows and `r ncol(Mr_trash_wheel_sheet)` columns. With the variables: `r names(Mr_trash_wheel_sheet)`
+
+* Professor trash wheel sheet has `r nrow(Professor_trash_wheel_sheet)` rows and `r ncol(Professor_trash_wheel_sheet)` columns. With the variables: `r names(Professor_trash_wheel_sheet)`
+
+* Gwynnda trash wheel sheet has `r nrow(Gwynnda_trash_wheel)` rows and `r ncol(Gwynnda_trash_wheel)` columns. With the variables: `r names(Gwynnda_trash_wheel)`
+
+Then combine the dataset with `bind_rows` :
+```{r}
+# Combine all three datasets into one tidy dataset
+combined_trash_wheel_data <- bind_rows(Mr_trash_wheel_sheet, Professor_trash_wheel_sheet, Gwynnda_trash_wheel)
+head(combined_trash_wheel_data,5)
+  
+```
+```{r}
+weight_Professor=combined_trash_wheel_data |> 
+  select(year,month,weight_tons,trash_wheel)|>
+  filter(trash_wheel=="Professor trash wheel")
+
+
+cigg_gwy=combined_trash_wheel_data |> 
+  select(year,month,cigarette_butts,trash_wheel)|>
+  filter(trash_wheel=="Gwynnda trash wheel", year==2022, month=="June")
+
+```
+
+The new dataset has `r nrow(combined_trash_wheel_data)` observations and `r ncol(combined_trash_wheel_data)` columns. With key variables: `r names(combined_trash_wheel_data)`. 
+
+* The total trash weight collected by Professor Trash Wheel is `r sum(weight_Professor$weight_tons, na.rm = TRUE)` tons.
+
+* The total number of cigarette butts collected by Gwynnda in June of 2022 is `r format(sum(cigg_gwy$cigarette_butts,na.rm = TRUE))`
+
 
 ## Problem 3
