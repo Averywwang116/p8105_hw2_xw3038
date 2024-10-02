@@ -131,11 +131,12 @@ head(combined_trash_wheel_data,5)
   
 ```
 ```{r}
+#filter by trash_wheel
 weight_Professor=combined_trash_wheel_data |> 
   select(year,month,weight_tons,trash_wheel)|>
   filter(trash_wheel=="Professor trash wheel")
 
-
+#filter by year and month for the Gwynnda trash wheel
 cigg_gwy=combined_trash_wheel_data |> 
   select(year,month,cigarette_butts,trash_wheel)|>
   filter(trash_wheel=="Gwynnda trash wheel", year==2022, month=="June")
@@ -148,5 +149,28 @@ The new dataset has `r nrow(combined_trash_wheel_data)` observations and `r ncol
 
 * The total number of cigarette butts collected by Gwynnda in June of 2022 is `r format(sum(cigg_gwy$cigarette_butts,na.rm = TRUE))`
 
-
 ## Problem 3
+
+Import, clean and organize for viewers.csv
+The steps for cleaning include figuring out the potential NA values and mutate the season variable to integer. Then the data is organized using `pivot_longer`.
+```{r}
+viewer=read_csv("data/gbb_datasets/viewers.csv",na = c("NA", ".", ""))|>
+  janitor::clean_names() |>
+  pivot_longer(
+    series_1:series_10,
+    names_to="season",
+    names_prefix="series_",
+    values_to="viewers"
+  )|> mutate(season=as.integer(season))
+head(viewer,10)
+
+
+  
+```
+
+
+The average viewership in Season 1 is `r mean(viewer|>filter(season==1)|>pull(viewers),na.rm = TRUE)`.
+
+The average viewership in Season 5 is `r round(mean(viewer|>filter(season==5)|> pull(viewers), na.rm = TRUE), 2)`.
+
+`
