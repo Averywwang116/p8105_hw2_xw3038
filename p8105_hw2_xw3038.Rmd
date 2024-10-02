@@ -1,0 +1,86 @@
+---
+title: "Homework2"
+author: "Avery Wang"
+date: 2024-10-01
+output: github_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, message = FALSE)
+```
+
+## Problem 1
+Load the necessary packages for this assignment 
+```{r load_libraries}
+library(tidyverse)
+library(dplyr)
+library(readxl)
+
+```
+
+Read and clean the data; retain line, station, name, station latitude / longitude, routes served, entry, vending, entrance type, and ADA compliance. Convert the entry variable from character (YES vs NO) to a logical variable (the ifelse or case_match function may be useful).
+
+```{r}
+#load the data using relative path
+NYC_subway=read_csv("./data/NYC_Transit_Subway_Entrance_And_Exit_Data.csv",
+                    col_types = cols(Route8 =col_character(), 
+                                     Route9 = col_character(), 
+                                     Route10 =col_character(), 
+                                     Route11 = col_character())) |>
+  janitor::clean_names() |> 
+  select(line:exit_only,vending,ada) |>
+  mutate(entry = ifelse(entry == "YES", TRUE, FALSE))
+head(NYC_subway,5)
+```
+The variables include:
+Line, station name, station latitude and longtitude, route 1 to 11, entrance type, entry, exit_only and ada information.
+
+The first step is to convert the Route8 to 11 into character type so that all the types of Route are now consistent. Then the `janitor::clean_names()` is used to standardize the column names. And specific columns according to the instruction are selected. Then the entry variable is converted to the logical variable using ifelse. The cleaned dataset now has `r nrow(NYC_subway)` rows and `r ncol(NYC_subway)` columns. And these data are not tidy as we should convert `route` variables from wide to long format. 
+
+```{r}
+filter_station=select(NYC_subway,line,station_name,ada,entry,vending)
+
+```
+* There are `r nrow(filter_station|>distinct(line, station_name))` distinct stations 
+
+* There are `r nrow(filter_station |> filter(ada == TRUE) |> distinct(line, station_name))` stations that are ADA compliant
+
+```{r}
+# Filter for stations without vending machines
+without_vending=nrow( filter_station |>
+  filter(vending == "NO") )
+
+# Calculate the proportion of entrances without vending machines that allow entry
+noentry_without_vending=nrow( filter_station |>
+  filter(vending == "NO" & entry=="TRUE") )
+
+```
+
+The proportion of station entrances / exits without vending allow entrance is `r noentry_without_vending/without_vending`
+
+Reformat data so that route number and route name are distinct variables. 
+```{r}
+reformat_df=
+  NYC_subway |>
+  mutate(across(starts_with("route"), as.character)) |>
+  pivot_longer(
+    route1:route11, 
+    names_to = "route_number", 
+    values_to = "route_name", 
+    values_drop_na = TRUE
+    )
+```
+
+```{r}
+A_station=reformat_df|>filter(route_name == "A")|>distinct(line,station_name)
+A_train_ada= reformat_df|>filter(route_name == "A"& ada=="TRUE")|>distinct(line,station_name)
+```
+* There are `r nrow(A_station)` distinct stations served the A train.
+* There are `r nrow(A_train_ada)` distinct A stations that are ADA compliant
+
+
+
+## Problem 2
+
+## Problem 3
