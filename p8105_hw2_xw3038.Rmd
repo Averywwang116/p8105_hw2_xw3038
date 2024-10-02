@@ -86,7 +86,7 @@ Load the excel using `read_excel` and specify the Mr. Trash Wheel sheet and figu
 The sheet Professor trash wheel and Gwynndan trash wheel are loaded and cleaned similarly
 ```{r }
 #load the Mr. Trash sheet by specifying the excel file
-Mr_trash_wheel_sheet=read_excel("data/Trash_Wheel_Collection_Data.xlsx",
+Mr_trash_wheel_sheet=read_excel("./data/Trash_Wheel_Collection_Data.xlsx",
                                 sheet = "Mr. Trash Wheel", 
                                 na = c("NA", ".", "")) |>
    janitor::clean_names() |> #give reasonable name 
@@ -96,7 +96,7 @@ Mr_trash_wheel_sheet=read_excel("data/Trash_Wheel_Collection_Data.xlsx",
           trash_wheel= "Mr. Trash Wheel", 
           year = as.integer(year))
 
-Professor_trash_wheel_sheet=read_excel("data/Trash_Wheel_Collection_Data.xlsx",
+Professor_trash_wheel_sheet=read_excel("./data/Trash_Wheel_Collection_Data.xlsx",
                                 sheet = "Professor Trash Wheel",
                                 na = c("NA", ".", "")) |>
    janitor::clean_names() |> #give reasonable name 
@@ -105,7 +105,7 @@ Professor_trash_wheel_sheet=read_excel("data/Trash_Wheel_Collection_Data.xlsx",
    mutate(trash_wheel ="Professor trash wheel",
            year = as.integer(year))
 
-Gwynnda_trash_wheel=read_excel("data/Trash_Wheel_Collection_Data.xlsx",
+Gwynnda_trash_wheel=read_excel("./data/Trash_Wheel_Collection_Data.xlsx",
                                 sheet = "Gwynnda Trash Wheel",
                                 na = c("NA", ".", "")) |>
    janitor::clean_names() |> #give reasonable name 
@@ -150,6 +150,89 @@ The new dataset has `r nrow(combined_trash_wheel_data)` observations and `r ncol
 * The total number of cigarette butts collected by Gwynnda in June of 2022 is `r format(sum(cigg_gwy$cigarette_butts,na.rm = TRUE))`
 
 ## Problem 3
+Import, clean and organize 
+```{r}
+individual_bake <- read_csv("./data/gbb_datasets/bakers.csv", na = c("NA", "N/A", "UNKNOWN", "Unknown", "")) |>
+  janitor::clean_names() |>
+  mutate(baker_first_name = sapply(strsplit(baker_name, " "), `[`, 1)) |> # Extract the first word as first name
+  select(baker_first_name,everything())
+
+their_bake= read_csv("./data/gbb_datasets/bakes.csv", na = c("NA", "N/A", "UNKNOWN", "Unknown", "")) |>
+  janitor::clean_names() |>
+  mutate(baker = ifelse(baker == "\"Jo\"", "Jo", baker)) |>
+  select(baker,everything())|> #it is using the first name here 
+  rename(baker_first_name=baker)
+
+results = read_csv("./data/gbb_datasets/results.csv", skip=2)|> 
+  janitor::clean_names() |> 
+  select(baker, everything())|>
+  rename(baker_first_name=baker)|>
+  drop_na(result)|>
+  mutate(
+    result = case_match(
+      result, 
+      "IN" ~ "stayed in",
+      "OUT" ~ "Eliminated",
+      "STAR BAKER" ~ "Star Baker",
+      "WINNER" ~ "Series Winner",
+      "Runner-up" ~ "Series Runner up",
+      "WD" ~ "withdrew"
+    )
+  )
+
+```
+For each dataset `bakers.csv, bakes.csv, and results.csv` the `read_csv()` function reads the CSV files. Special values like "NA", "N/A", "UNKNOWN", "Unknown", and empty strings are treated as missing (NA). `janitor::clean_names()` is applied to each dataset to standardize the columns.
+
+In individual_bake, the `mutate()` function uses `strsplit()` and `sapply()` to extract the first name from the baker_name column. This helps prepare the joining step with their_bake as only first name of the baker exist in that dataset. The first name is stored in a new column baker_first_name. 
+
+In their_bake, the `mutate()` function is used to clean up inconsistencies in the baker column. Specifically, if a baker's name is "\"Jo\"", it is replaced with "Jo" to standardize the name. The baker column is renamed to baker_first_name which helps the joining step with the other two datasets.
+
+In results dataframe, the first two columns are skipped since the information starts from row 3. The column baker is also renamed to baker_first_name, and the column result with missing values are dropped. `case_match()` is also applied to clean and standardize values in the result column.
+
+To check for completeness and correctness across datasets, `anti_join` is used. The anti_join of their_bake and individual_bake shows that all the bakers in their_bake can find corresponding personal information in the individual_bake dataframe. 
+```{r}
+anti_join(their_bake, individual_bake)
+```
+And the result of `anti_join(results,their_bake)` shows that in series 2, the person Jo cannot find the corresponding results in all the episodes she attended. But since Joanne is the winner of series 2, Jo actually might be Joanne. Correspondingly, I changed the first name Joanne to Jo in the result dataframe 
+```{r}
+anti_join(their_bake,results)
+```
+
+```{r}
+
+results =results |>
+  mutate(baker_first_name = ifelse(baker_first_name == "Joanne", "Jo", baker_first_name))
+
+```
+
+Then I implemented the left join  between `their_bake` and `individual_bake` and matched on `series` and `baker_first_name`. After the left join, I performed a right join between the result of the first join and `results`. Then I also reordered the joining dataframe to make some important information comes first. And the table is further export into a csv in the directory containing the orginal dataset. The final dataset now reflects the personal information of the participants in the Great British Bake off, and the corresponding results in each season and episode.
+
+```{r}
+joining = their_bake|>
+  left_join(individual_bake, by = c("series", "baker_first_name")) |>
+  right_join(results, by = c("series", "baker_first_name", "episode"))|>
+  select(series,episode,baker_first_name,baker_name,baker_age,result,everything())
+
+```
+
+```{r}
+write.csv(joining , "./data/gbb_datasets/combined.csv", row.names = FALSE)
+```
+
+Then a user friendly table is created to show the start baker or the winner of each episode in Seasons 5 to 10. 
+```{r}
+user_friendly_table=joining|> 
+  filter(series>=5 & series <= 10 & result %in% c("Star Baker", "Series Winner")) |>
+  select(baker_name,series,episode,result)
+  
+  
+```
+
+```{r}
+user_friendly_table
+```
+
+From the user-friendly table, it can be observed that the Series Winner is often one of the frequent Star Bakers. However, the competition can be unpredictable, and even those who win the most Star Baker titles aren't always guaranteed to win the series. As a result, the Series Winner may sometimes be someone who doesn't earn the most Star Baker titles throughout the season.
 
 Import, clean and organize for viewers.csv
 The steps for cleaning include figuring out the potential NA values and mutate the season variable to integer. Then the data is organized using `pivot_longer`.
@@ -173,4 +256,4 @@ The average viewership in Season 1 is `r mean(viewer|>filter(season==1)|>pull(vi
 
 The average viewership in Season 5 is `r round(mean(viewer|>filter(season==5)|> pull(viewers), na.rm = TRUE), 2)`.
 
-`
+
